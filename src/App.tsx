@@ -1,40 +1,32 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
+import { Suspense, useEffect, useState } from 'react'
+import { Canvas, useThree } from '@react-three/fiber'
+import { useGLTF, OrbitControls, Stage, CameraShake, useAnimations, Html, Text, MeshDistortMaterial } from '@react-three/drei'
+import styled from 'styled-components'
 
-// function App() {
-//   const [count, setCount] = useState(0)
 
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>sssss
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.tsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
+const StyledContainer = styled.div`
+  height: 100%;
+`
+const StyledForm = styled.form`
+  position: absolute;
+  bottom: 50px;
+`
 
-// export default App
-
-import React, { useState } from 'react';
+// http://drei.docs.pmnd.rs/misc/html#html
+const Box = ({ children }) => {
+  const [size, set] = useState(0.5)
+  const controls = useThree((state) => state.controls)
+  return (
+    <mesh scale={size * 4}>
+      <planeGeometry />
+      <meshToonMaterial emissive={'#19ffaf'} />
+      <Html occlude distanceFactor={1.8} position={[0, 0, 0.13]} transform>
+        {children}
+      </Html>
+      
+    </mesh>
+  )
+}
 
 export default function App() {
   const [messages, setMessages]: any = useState([]);
@@ -71,17 +63,28 @@ export default function App() {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-      <div style={{ border: '1px solid #ccc', borderRadius: '5px', padding: '10px', marginBottom: '20px', height: '400px', overflowY: 'auto' }}>
-        {(messages as any).map((message: { role: string; content: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
-          <div key={index} style={{ marginBottom: '10px', textAlign: message.role === 'user' ? 'right' : 'left' }}>
-            <span style={{ background: message.role === 'user' ? '#007bff' : '#28a745', color: 'white', padding: '5px 10px', borderRadius: '20px', display: 'inline-block' }}>
-              {message.content}
-            </span>
+    <StyledContainer>
+      <Canvas camera={{ position: [2, 1, 5], fov: 25 }}>
+      
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 5]} />
+        <pointLight position={[-10, -10, -10]} />
+        <Box>
+          <div className='fooo' style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
+            <div>
+              {(messages as any).map((message: { role: string; content: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
+                <div key={index} style={{ marginBottom: '10px', textAlign: message.role === 'user' ? 'right' : 'left' }}>
+                  <span style={{ background: message.role === 'user' ? '#007bff' : '#28a745', color: 'white', padding: '5px 10px', borderRadius: '20px', display: 'inline-block' }}>
+                    {message.content}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        ))}
-      </div>
-      <form onSubmit={handleSubmit} style={{ display: 'flex' }}>
+        </Box>
+        <OrbitControls makeDefault />
+      </Canvas>
+      <StyledForm onSubmit={handleSubmit} style={{ display: 'flex' }}>
         <input
           type="text"
           value={input}
@@ -92,7 +95,7 @@ export default function App() {
         <button type="submit" disabled={isLoading} style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
           {isLoading ? 'Sending...' : 'Send'}
         </button>
-      </form>
-    </div>
+      </StyledForm>
+    </StyledContainer>
   );
 }
