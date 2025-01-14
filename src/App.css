@@ -1,5 +1,75 @@
-canvas {
-  width: 100%;
-  height: 100%;
+* {
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* darkmode/lightmode themes - for funsies */
+:root {
+  --core-text-color: #eee;
+  --core-text-color-inverse: #393939;
+  --core-background-color: #eee;
+  --hubspot-primary-color: #F57722;
+}
+
+.dark-mode {
+  --core-text-color: #393939;
+  --core-text-color-inverse: #eee;
+  --core-background-color: #393939;
+  --hubspot-primary-color: #393939;
+}
+
+/* end theming */
+
+/* Some base layout stuff */
+body {
+  margin: 0;
+  color: var(--core-text-color);
+  background-color: var(--hubspot-primary-color);
+}
+
+.app {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.navigation {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 10;
+}
+
+.navigation button {
+  margin: 5px;
+  padding: 10px 20px;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+.navigation button.active {
+  background: #555;
+  color: var(--core-text-color);
+}
+
+.sections {
+  height: 100vh;
+  /* scroll-snap-type: y; */
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  background: var(--hubspot-primary-color);
+  border-bottom: 1px solid #ddd;
+}
+
+.section:nth-child(2n) {
+  background: #e0e0e0;
+}
