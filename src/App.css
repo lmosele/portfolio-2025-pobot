@@ -1,13 +1,23 @@
 * {
   transition: background 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* darkmode/lightmode themes - for funsies */
 :root {
   --core-text-color: #eee;
   --core-text-color-inverse: #393939;
-  --core-background-color: #eee;
+  --core-background-color: #fff;
+  --core-border-radius: 4px;
   --hubspot-primary-color: #F57722;
+  --hubspot-secondary-color: rgb(51, 71, 91);
+  --hubspot-secondary-color-lite: rgb(80, 110, 144);
+  --hubspot-bg-color-bg: #f5f8fa;
+  --hubspot-accent-gradient: linear-gradient(114deg, rgb(252, 8, 73), rgb(210, 6, 136)) padding-box text;
+  --layout-nav-height: 44px;
+  --layout-nav-width: 50px;
 }
 
 .dark-mode {
@@ -17,10 +27,100 @@
   --hubspot-primary-color: #fff;
 }
 
+
+.container {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  grid-template-rows: var(--layout-nav-height) 1fr;
+  height: 100vh;
+  font-family: sans-serif;
+  background-color: var(--hubspot-secondary-color);
+}
+
+header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--layout-nav-height);
+  background-color: var(--hubspot-secondary-color);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+}
+
+aside {
+  grid-column: 1;
+  grid-row: 2;
+  position: fixed;
+  top: var(--layout-nav-height);
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  background-color: var(--hubspot-secondary-color);
+  padding: 1rem;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+main {
+  grid-column: 2;
+  grid-row: 2;
+  height: calc(100vh - var(--layout-nav-height));
+  overflow-y: auto;
+  background-color: var(--hubspot-bg-color-bg);
+  color: var(--core-text-color-inverse);
+  z-index: 1;
+  border-top-left-radius: 20px;
+}
+
+.logo-container {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: var(--hubspot-secondary-color);
+}
+
+.side-nav-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: var(--core-border-radius);
+  background-color: var(--hubspot-secondary-color);
+  color: var(--core-text-color);
+}
+
+.side-nav-link-active {
+  background-color: var(--hubspot-secondary-color-lite);
+  color: var(--core-text-color);
+}
+
+.side-nav-link-active:visited {
+  color: var(--core-text-color);
+}
+
+.special-gradient {
+  font-size: 55px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 67px;
+  background: linear-gradient(114deg, rgb(252, 8, 73), rgb(210, 6, 136)) padding-box text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* end theming */
 
 /* Some base layout stuff */
-body {
+/* body {
   margin: 0;
   color: var(--core-text-color);
   background-color: var(--hubspot-primary-color);
@@ -55,7 +155,6 @@ body {
 
 .sections {
   height: 100vh;
-  /* scroll-snap-type: y; */
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
 }
@@ -80,4 +179,4 @@ body {
   height: 100%;
   z-index: -1;
   background-color: var(--hubspot-primary-color);
-}
+} */
