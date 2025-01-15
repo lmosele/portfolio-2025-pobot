@@ -60,15 +60,18 @@ export const IconHBDev = () => (
     </svg>
 )
 export const IconHBDes = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="74" height="74" fill="none">
+    <svg style={{ width: '32px' }}
+        viewBox="-5 -5 80 80"
+        role="img"
+        aria-label="Portfolio logo">
         <path
             fill="url(#a)"
             d="M59.6 37a6.2 6.2 0 1 1 0-12.3 6.2 6.2 0 0 1 0 12.3ZM47.3 20.6a6.2 6.2 0 1 1 0-12.4 6.2 6.2 0 0 1 0 12.4Zm-20.6 0a6.2 6.2 0 1 1 0-12.4 6.2 6.2 0 0 1 0 12.4ZM14.4 37a6.2 6.2 0 1 1 0-12.3 6.2 6.2 0 0 1 0 12.3ZM37 0a37 37 0 0 0 0 74 6.2 6.2 0 0 0 4.6-10.3 6.2 6.2 0 0 1 4.6-10.3h7.2A20.6 20.6 0 0 0 74 33C74 14.7 57.4 0 37 0Z"
         />
-        <path fill="#fff" d="M22 31a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
-        <circle cx="27" cy="15" r="7" fill="#fff" />
-        <circle cx="47" cy="15" r="7" fill="#fff" />
-        <circle cx="60" cy="31" r="7" fill="#fff" />
+        <path fill="var(--hubspot-secondary-color)" d="M22 31a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z" />
+        <circle cx="27" cy="15" r="7" fill="var(--hubspot-secondary-color)" />
+        <circle cx="47" cy="15" r="7" fill="var(--hubspot-secondary-color)" />
+        <circle cx="60" cy="31" r="7" fill="var(--hubspot-secondary-color)" />
         <defs>
             <linearGradient
                 id="a"

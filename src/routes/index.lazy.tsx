@@ -1,134 +1,108 @@
-import React, { Suspense, useEffect, useState } from 'react'
-import { createLazyFileRoute } from '@tanstack/react-router'
-import { useSnapshot } from 'valtio'
-import { state } from '../state'
-import { Canvas } from '@react-three/fiber';
-import { ContactShadows, Environment, OrbitControls, Text } from '@react-three/drei';
+import { createLazyFileRoute, Link } from '@tanstack/react-router'
+import { AccentButton, Header, InnerContainer, InverseButton, NavButton, NavTabs, SpecialSection, StyledH1, StyledH2, StyledH3, Text, Tile, TileColumn, TileRow, Wrap } from '../components/Styled'
 
-import { IconHBDes, IconHBDev } from '../assets/react-icons'
-import { CenterContainer, StyledH1, StyledH2, Tile, TileRow, StyledButton } from '../components/Styled'
+import styled from 'styled-components'
+import { useState } from 'react'
+import { Timeline } from '../components/Timeline'
+import { events } from '../resume'
+import { Zap } from 'react-feather'
+import Chat from '../components/Chat'
 
-import '../App.css'
-import Cards from '../components/Cards';
-
-const routes = [
-    { path: '/sprout', name: 'Sprout Social' }, { path: '/appcues', name: 'Appcues' }
-]
-
-const routesObj = {
-    sprout: 'Sprout Social',
-    appcues: 'Appcues'
-}
-
-const Homepage = () => {
-    const snap = useSnapshot(state, { sync: true })
-
-    const [currentSection, setCurrentSection] = useState(snap.currentSection)
-    const [scrollPos, setScrollPos] = useState(0)
-
-    const scrollToSection = (index) => {
-        setCurrentSection(index)
-        state.currentSection = index;
-        document.getElementById(`section-${index}`).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-        })
-    }
-
-    useEffect(() => {
-        scrollToSection(state.currentSection)
-    }, [state.currentSection])
-
-    // useEffect(() => {
-    //     const handleScroll = (e) => {
-    //         const currentScrollY = e.deltaY;
-    //         console.log({ currentScrollY, scrollPos })
-
-    //         // if (Math.abs(currentScrollY - scrollPos) < 50) return;
-    //         if (currentScrollY > scrollPos) {
-    //             // Downward scroll
-    //             console.log('down')
-
-    //             if (currentSection < sections.length - 1) {
-    //                 scrollToSection(currentSection + 1);
-    //             }
-    //         } else if (currentScrollY < scrollPos) {
-    //             // Upward scroll
-    //             console.log('up')
-
-    //             if (currentSection > 0) {
-    //                 scrollToSection(currentSection - 1);
-    //             }
-    //         }
-
-    //         setScrollPos(currentScrollY);
-    //     };
-
-    //     window.addEventListener('wheel', handleScroll, { once: true });
-    //     return () => window.removeEventListener('wheel', handleScroll);
-    // }, [scrollPos, currentSection]);
-
-    return (
-        <div className="home">
-            {/* Sections */}
-            <div className="sections">
-                <CenterContainer key={0} id={`section-0`} className="section">
-                    <StyledH1>Hi Hubspot!</StyledH1>
-                    <StyledButton onClick={() => scrollToSection(1)}>Let's Go!</StyledButton>
-                </CenterContainer>
-            </div>
-            <div className="sections">
-                <div key={1} id={`section-1`} className="section">
-                    <CenterContainer key={0} id={`section-0`} className="section">
-                        <StyledH2>
-                            I’m a Design Technologist with 10+ years of Design Systems of
-                            design systems experience.
-                        </StyledH2>
-
-                        <TileRow>
-                            <Tile>
-                                <IconHBDes />
-                                Designer
-                            </Tile>
-                            <Tile>
-                                <IconHBDev />
-                                Developer
-                            </Tile>
-                        </TileRow>
-                    </CenterContainer>
-                </div>
-            </div>
-            <div className="sections">
-                <div key={2} id={`section-2`} className="section">
-                    {/* If viewport is under a certain size, links only */}
-                    <Canvas
-                        camera={{ position: [-5, 0, -15], fov: 55 }}
-                    >
-                        <color attach="background" args={['#F57722']} />
-
-                        <pointLight position={[10, 10, 10]} intensity={1.0} />
-                        <Suspense fallback={null}>
-                            <group rotation={[0, Math.PI, 0]} position={[0, 1, 0]}>
-                                <Cards position={[-10, 1, 1]} seed={23} title="Sprout Social" path="/sprout" />
-                                <Cards position={[0, 1, 1]} seed={43} title="Appcues" path="/appcues" />
-                                <Cards position={[10, 1, 1]} seed={56} title="Maxwell Health" path="/maxwell" />
-                            </group>
-                            <Environment preset="city" />
-                        </Suspense>
-                        <ContactShadows position={[0, -4.5, 0]} scale={40} blur={2} far={4.5} />
-                        <OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.2} maxPolarAngle={Math.PI / 2.2} />
-                    </Canvas>
-                </div>
-            </div>
-            <div className="sections">
-                <div key={3} id={`section-3`} className="section">
-                    <StyledH1>PoBot</StyledH1>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 export const Route = createLazyFileRoute('/')({
-    component: Homepage,
+  component: RouteComponent,
 })
+
+
+
+function RouteComponent() {
+  const [activeTab, setActiveTab] = useState('intro');
+
+  const handleClick = (tab: string) => {
+    setActiveTab(tab)
+  }
+
+  return (
+    <div>
+      <Header>
+        <InnerContainer>
+          <StyledH2>Lucas Mosele</StyledH2>
+          <NavTabs>
+            <NavButton className={activeTab === 'intro' ? 'active' : ''} onClick={() => { handleClick('intro') }}>Getting Started</NavButton>
+            <NavButton className={activeTab === 'resume' ? 'active' : ''} onClick={() => { handleClick('resume') }}>Resume</NavButton>
+          </NavTabs>
+        </InnerContainer>
+      </Header>
+      <SpecialSection>
+        <InnerContainer>
+          {activeTab === 'intro' ?
+            (
+              <Wrap>
+                <StyledH1 className='special-gradient'>Hi Hubspot!</StyledH1>
+                <Text>
+                  I'm an interdisciplinary designer and developer with a focus on systems design, application architecture, user-centric design, and design mentorship. I bring 10+ years of experience in product design and front-end software development.
+                </Text>
+                <TileRow>
+                  <Tile>
+                    <StyledH3>Try Pobot</StyledH3>
+                    <Text>Get more done with a virtual Lucas that works with you help hire him.</Text>
+                    <AccentButton><Zap size={'16px'} />Try Now!</AccentButton>
+                  </Tile>
+                  <Tile>
+                    <StyledH3>Projects</StyledH3>
+                    <Text>See some of the projects I'm able to share publically</Text>
+                    <InverseButton>See Portfolio</InverseButton>
+                  </Tile>
+                  <Tile>
+                    <StyledH3>Inspect Site</StyledH3>
+                    <Text>Navigate to Github to check out this portfolio's source code.</Text>
+                    <InverseButton>See Portfolio</InverseButton>
+                  </Tile>
+                </TileRow>
+              </Wrap>
+            ) :
+            (<div>
+              <Timeline events={events} />
+            </div>)}
+        </InnerContainer>
+      </SpecialSection>
+      <Chat />
+      <section>
+        <InnerContainer>
+          <TileColumn>
+            <StyledH2>Posts</StyledH2>
+            <Tile>
+              <StyledH3>The Purpose of A System Is What It Does</StyledH3>
+              <Text>How unclear rulesets prevent meaningful impact across an organization, design systems, and applications.</Text>
+              <a href="https://lucasmosele.notion.site/The-Purpose-of-A-System-Is-What-It-Does-13fc61bf8e7b806482acc80d455732c3">
+                <InverseButton>Read More</InverseButton>
+              </a>
+            </Tile>
+            <Tile>
+              <StyledH3>The Hot Potato Problem: How Do You Recruit A “UX Developer”?</StyledH3>
+              <Text>Hiring "UX Developers" is a challenge for companies due to their unique mix of skills. Traditional hiring frameworks often struggle to accommodate these skillsets, leaving businesses at a crossroads in defining their roles.</Text>
+              <a href="https://lucasmosele.notion.site/The-Hot-Potato-Problem-How-Do-You-Recruit-A-UX-Developer-138c61bf8e7b80e88e81d4ea30a54898">
+                <InverseButton>Read More</InverseButton>
+              </a>
+            </Tile>
+            <Tile>
+              <StyledH3>The Case Against Pair Coding Interviews</StyledH3>
+              <Text>Pair coding interviews often create unnecessary stress and fail to reflect real-world workflows, potentially disadvantaging qualified candidates. Alternative methods, like collaborative take-home project reviews, offer a better way to assess skills and teamwork.</Text>
+              <a href="https://lucasmosele.medium.com/the-case-against-pair-coding-interviews-7d47253892ba">
+                <InverseButton>Read More</InverseButton>
+              </a>
+            </Tile>
+            <Tile>
+              <StyledH3>The Process Behind Our End of Year Report</StyledH3>
+              <Text>A brief overview of how Maxwell's End of Year Report was designed and built.</Text>
+              <a href="https://lucasmosele.medium.com/the-process-behind-our-end-of-year-report-bc6a71b0aca6">
+                <InverseButton>Read More</InverseButton>
+              </a>
+            </Tile>
+          </TileColumn>
+        </InnerContainer>
+      </section>
+
+    </div>
+  )
+}

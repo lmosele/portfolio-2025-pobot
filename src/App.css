@@ -1,26 +1,118 @@
 * {
   transition: background 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* darkmode/lightmode themes - for funsies */
 :root {
+  --core-text-color-light: #eee; /* note: Always light text for navbar */
   --core-text-color: #eee;
   --core-text-color-inverse: #393939;
-  --core-background-color: #eee;
+  --core-background-color: #fff;
+  --core-container-color: #fff;
   --hubspot-primary-color: #F57722;
+  --hubspot-secondary-color: rgb(51, 71, 91);
+  --hubspot-secondary-color-lite: rgb(80, 110, 144);
+  --hubspot-bg-color-bg: #f5f8fa;
+  --hubspot-accent-gradient: linear-gradient(114deg, rgb(252, 8, 73), rgb(210, 6, 136)) padding-box text;
+  --hubspot-accent-gradient-lite: linear-gradient(99deg, rgb(251, 221, 210), rgb(251, 219, 233));
+  --hubspot-accent-color: #d20688;
+  --sprout-accent-color: #2bb656;
+  --sprout-accent-color-dark: #073333;
+  --appcues-accent-color: #5c45ff;
+  --ellevation-accent-color: #6bbd11;
+  /* End Colors */
+  --core-border-radius: 8px;
+  --layout-nav-height: 44px;
+  --layout-nav-width: 50px;
+  
 }
 
 .dark-mode {
   --core-text-color: #393939;
   --core-text-color-inverse: #eee;
-  --core-background-color: #393939;
-  --hubspot-primary-color: #fff;
+  --core-background-color: rgb(51, 71, 91);
+  --core-container-color: rgb(80, 110, 144);
+  --hubspot-primary-color: #F57722;
+  --hubspot-secondary-color: rgb(22, 31, 41);
+  --hubspot-secondary-color-lite: rgb(51, 71, 91);
+  --hubspot-bg-color-bg: rgb(51, 71, 91);
+  --hubspot-accent-gradient: linear-gradient(114deg, #d20688, #ffbc4b) padding-box text;
+  --hubspot-accent-gradient-lite: linear-gradient(99deg, #5c61d6, #4348b0);
+  --hubspot-accent-color: #d20688;
 }
+
+
+.container {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  grid-template-rows: var(--layout-nav-height) 1fr;
+  height: 100vh;
+  font-family: sans-serif;
+  background-color: var(--hubspot-secondary-color);
+}
+
+header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--layout-nav-height);
+  background-color: var(--hubspot-secondary-color);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+aside {
+  grid-column: 1;
+  grid-row: 2;
+  position: fixed;
+  top: var(--layout-nav-height);
+  left: 0;
+  bottom: 0;
+  width: 64px;
+  background-color: var(--hubspot-secondary-color);
+  padding: 1rem;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+main {
+  grid-column: 2;
+  grid-row: 2;
+  height: calc(100vh - var(--layout-nav-height));
+  overflow-y: auto;
+  background-color: var(--hubspot-bg-color-bg);
+  color: var(--core-text-color-inverse);
+  z-index: 1;
+  border-top-left-radius: 15px;
+}
+
+.logo-container {
+  margin-top: auto;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background-color: var(--hubspot-secondary-color);
+}
+
 
 /* end theming */
 
 /* Some base layout stuff */
-body {
+/* body {
   margin: 0;
   color: var(--core-text-color);
   background-color: var(--hubspot-primary-color);
@@ -55,7 +147,6 @@ body {
 
 .sections {
   height: 100vh;
-  /* scroll-snap-type: y; */
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
 }
@@ -80,4 +171,4 @@ body {
   height: 100%;
   z-index: -1;
   background-color: var(--hubspot-primary-color);
-}
+} */
