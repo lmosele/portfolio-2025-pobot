@@ -16,10 +16,24 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const SproutLazyImport = createFileRoute('/sprout')()
+const AppcuesLazyImport = createFileRoute('/appcues')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const SproutLazyRoute = SproutLazyImport.update({
+  id: '/sprout',
+  path: '/sprout',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/sprout.lazy').then((d) => d.Route))
+
+const AppcuesLazyRoute = AppcuesLazyImport.update({
+  id: '/appcues',
+  path: '/appcues',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/appcues.lazy').then((d) => d.Route))
 
 const AboutLazyRoute = AboutLazyImport.update({
   id: '/about',
@@ -51,6 +65,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutLazyImport
       parentRoute: typeof rootRoute
     }
+    '/appcues': {
+      id: '/appcues'
+      path: '/appcues'
+      fullPath: '/appcues'
+      preLoaderRoute: typeof AppcuesLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/sprout': {
+      id: '/sprout'
+      path: '/sprout'
+      fullPath: '/sprout'
+      preLoaderRoute: typeof SproutLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -59,36 +87,46 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/appcues': typeof AppcuesLazyRoute
+  '/sprout': typeof SproutLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/appcues': typeof AppcuesLazyRoute
+  '/sprout': typeof SproutLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
+  '/appcues': typeof AppcuesLazyRoute
+  '/sprout': typeof SproutLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/appcues' | '/sprout'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/appcues' | '/sprout'
+  id: '__root__' | '/' | '/about' | '/appcues' | '/sprout'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
+  AppcuesLazyRoute: typeof AppcuesLazyRoute
+  SproutLazyRoute: typeof SproutLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
+  AppcuesLazyRoute: AppcuesLazyRoute,
+  SproutLazyRoute: SproutLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -102,7 +140,9 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/about",
+        "/appcues",
+        "/sprout"
       ]
     },
     "/": {
@@ -110,6 +150,12 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.lazy.tsx"
+    },
+    "/appcues": {
+      "filePath": "appcues.lazy.tsx"
+    },
+    "/sprout": {
+      "filePath": "sprout.lazy.tsx"
     }
   }
 }

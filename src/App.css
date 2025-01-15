@@ -73,3 +73,11 @@ body {
 .section:nth-child(2n) {
   background: #e0e0e0;
 }
+
+.background-canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--hubspot-primary-color);
+}

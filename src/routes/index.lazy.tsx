@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { createLazyFileRoute } from '@tanstack/react-router'
 import { useSnapshot } from 'valtio'
 import { state } from '../state'
+import { Canvas } from '@react-three/fiber';
+import { ContactShadows, Environment, OrbitControls, Text } from '@react-three/drei';
 
 import { IconHBDes, IconHBDev } from '../assets/react-icons'
 import { CenterContainer, StyledH1, StyledH2, Tile, TileRow, StyledButton } from '../components/Styled'
 
 import '../App.css'
+import Cards from '../components/Cards';
 
+const routes = [
+    { path: '/sprout', name: 'Sprout Social' }, { path: '/appcues', name: 'Appcues' }
+]
+
+const routesObj = {
+    sprout: 'Sprout Social',
+    appcues: 'Appcues'
+}
 
 const Homepage = () => {
     const snap = useSnapshot(state, { sync: true })
@@ -89,7 +100,24 @@ const Homepage = () => {
             </div>
             <div className="sections">
                 <div key={2} id={`section-2`} className="section">
-                    <StyledH1>section 3!</StyledH1>
+                    {/* If viewport is under a certain size, links only */}
+                    <Canvas
+                        camera={{ position: [-5, 0, -15], fov: 55 }}
+                    >
+                        <color attach="background" args={['#F57722']} />
+
+                        <pointLight position={[10, 10, 10]} intensity={1.0} />
+                        <Suspense fallback={null}>
+                            <group rotation={[0, Math.PI, 0]} position={[0, 1, 0]}>
+                                <Cards position={[-10, 1, 1]} seed={23} title="Sprout Social" path="/sprout" />
+                                <Cards position={[0, 1, 1]} seed={43} title="Appcues" path="/appcues" />
+                                <Cards position={[10, 1, 1]} seed={56} title="Maxwell Health" path="/maxwell" />
+                            </group>
+                            <Environment preset="city" />
+                        </Suspense>
+                        <ContactShadows position={[0, -4.5, 0]} scale={40} blur={2} far={4.5} />
+                        <OrbitControls enablePan={false} enableZoom={false} minPolarAngle={Math.PI / 2.2} maxPolarAngle={Math.PI / 2.2} />
+                    </Canvas>
                 </div>
             </div>
             <div className="sections">

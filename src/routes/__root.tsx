@@ -16,6 +16,8 @@ const Root = () => {
     return (<div className="app" >
         {/* Navigation bubbles */}
         <div className="navigation">
+            <Link to="/">Home</Link>
+
             {sections.map((section, index) => (
                 <button
                     key={index}
