@@ -19,6 +19,10 @@
   --hubspot-accent-gradient: linear-gradient(114deg, rgb(252, 8, 73), rgb(210, 6, 136)) padding-box text;
   --hubspot-accent-gradient-lite: linear-gradient(99deg, rgb(251, 221, 210), rgb(251, 219, 233));
   --hubspot-accent-color: #d20688;
+  --sprout-accent-color: #2bb656;
+  --sprout-accent-color-dark: #073333;
+  --appcues-accent-color: #5c45ff;
+  --ellevation-accent-color: #6bbd11;
   /* End Colors */
   --core-border-radius: 8px;
   --layout-nav-height: 44px;
@@ -93,7 +97,7 @@ main {
   background-color: var(--hubspot-bg-color-bg);
   color: var(--core-text-color-inverse);
   z-index: 1;
-  border-top-left-radius: 20px;
+  border-top-left-radius: 15px;
 }
 
 .logo-container {

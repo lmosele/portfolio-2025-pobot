@@ -37,10 +37,12 @@ export const TileColumn = styled.div`
   flex-direction: column;
   margin: 40px 0;
   gap: 20px;
+  overflow: hidden;
 `
 
 export const Tile = styled.figure`
   display: flex;
+  position: relative;
   flex: 1;
   flex-direction: column;
   gap: 1em;
@@ -51,6 +53,11 @@ export const Tile = styled.figure`
   padding: 20px;
   height: auto;
   color: var(--core-text-color-inverse);
+  &:hover {
+    cursor: pointer;
+    color: var(--core-text-color-inverse);
+    box-shadow: 10px 10px 25px -25px rgba(0,0,0,0.75);  
+  }
 `
 
 export const CenterContainer = styled.div`
@@ -162,7 +169,8 @@ export const NavbarLinks = styled(Link)`
   background-color: var(--hubspot-secondary-color);
   color: var(--core-text-color-light);
     &:hover
-    &:focus {
+    &:focus
+    &:active {
         cursor: pointer;
         background-color: var(--hubspot-secondary-color-lite);
     }

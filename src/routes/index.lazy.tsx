@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { Timeline } from '../components/Timeline'
 import { events } from '../resume'
 import { Zap } from 'react-feather'
+import Chat from '../components/Chat'
 
 
 export const Route = createLazyFileRoute('/')({
@@ -65,6 +66,7 @@ function RouteComponent() {
             </div>)}
         </InnerContainer>
       </SpecialSection>
+      <Chat />
       <section>
         <InnerContainer>
           <TileColumn>

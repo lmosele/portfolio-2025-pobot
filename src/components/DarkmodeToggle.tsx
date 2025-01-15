@@ -8,8 +8,8 @@ const ToggleWrapper = styled.div`
   gap: 8px;
 `
 const ToggleButton = styled.button`
-  width: 51px;
-  height: 31px;
+  width: 40px;
+  height: 25px;
   border-radius: 15.5px;
   position: relative;
   transition: background-color 0.3s ease;
@@ -29,8 +29,8 @@ const ToggleButton = styled.button`
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 27px;
-    height: 27px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);

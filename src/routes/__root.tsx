@@ -2,7 +2,7 @@ import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
 import { useSnapshot } from 'valtio';
 import { state } from '../state';
 import { useEffect } from 'react';
-import { GitHub, Grid, User, Zap } from 'react-feather';
+import { GitHub, Grid, Home, User, Zap } from 'react-feather';
 
 import '../App.css';
 import { IconHBDes } from '../assets/react-icons';
@@ -36,8 +36,9 @@ const Root = () => {
         </header>
 
         <aside>
-            <NavbarLinks to="/" activeProps={{ className: 'active' }}><Grid /></NavbarLinks>
+            <NavbarLinks to="/" activeProps={{ className: 'active' }}><Home /></NavbarLinks>
             <NavbarLinks to="/about" activeProps={{ className: 'active' }}><User /></NavbarLinks>
+            <NavbarLinks to="/portfolio" activeProps={{ className: 'active' }}><Grid /></NavbarLinks>
             <NavbarLinks as="a" target="_blank" href='https://www.github.com/lmosele' className='side-nav-link'><GitHub /></NavbarLinks>
         </aside>
 

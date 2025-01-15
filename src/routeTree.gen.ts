@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const SproutLazyImport = createFileRoute('/sprout')()
+const PortfolioLazyImport = createFileRoute('/portfolio')()
 const IndexBackupLazyImport = createFileRoute('/index-backup')()
 const AppcuesLazyImport = createFileRoute('/appcues')()
 const AboutLazyImport = createFileRoute('/about')()
@@ -29,6 +30,12 @@ const SproutLazyRoute = SproutLazyImport.update({
   path: '/sprout',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/sprout.lazy').then((d) => d.Route))
+
+const PortfolioLazyRoute = PortfolioLazyImport.update({
+  id: '/portfolio',
+  path: '/portfolio',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/portfolio.lazy').then((d) => d.Route))
 
 const IndexBackupLazyRoute = IndexBackupLazyImport.update({
   id: '/index-backup',
@@ -86,6 +93,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexBackupLazyImport
       parentRoute: typeof rootRoute
     }
+    '/portfolio': {
+      id: '/portfolio'
+      path: '/portfolio'
+      fullPath: '/portfolio'
+      preLoaderRoute: typeof PortfolioLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/sprout': {
       id: '/sprout'
       path: '/sprout'
@@ -103,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
 
@@ -111,6 +126,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
 
@@ -120,15 +136,29 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/appcues' | '/index-backup' | '/sprout'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/appcues'
+    | '/index-backup'
+    | '/portfolio'
+    | '/sprout'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/appcues' | '/index-backup' | '/sprout'
-  id: '__root__' | '/' | '/about' | '/appcues' | '/index-backup' | '/sprout'
+  to: '/' | '/about' | '/appcues' | '/index-backup' | '/portfolio' | '/sprout'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/appcues'
+    | '/index-backup'
+    | '/portfolio'
+    | '/sprout'
   fileRoutesById: FileRoutesById
 }
 
@@ -137,6 +167,7 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute
   AppcuesLazyRoute: typeof AppcuesLazyRoute
   IndexBackupLazyRoute: typeof IndexBackupLazyRoute
+  PortfolioLazyRoute: typeof PortfolioLazyRoute
   SproutLazyRoute: typeof SproutLazyRoute
 }
 
@@ -145,6 +176,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   AppcuesLazyRoute: AppcuesLazyRoute,
   IndexBackupLazyRoute: IndexBackupLazyRoute,
+  PortfolioLazyRoute: PortfolioLazyRoute,
   SproutLazyRoute: SproutLazyRoute,
 }
 
@@ -162,6 +194,7 @@ export const routeTree = rootRoute
         "/about",
         "/appcues",
         "/index-backup",
+        "/portfolio",
         "/sprout"
       ]
     },
@@ -176,6 +209,9 @@ export const routeTree = rootRoute
     },
     "/index-backup": {
       "filePath": "index-backup.lazy.tsx"
+    },
+    "/portfolio": {
+      "filePath": "portfolio.lazy.tsx"
     },
     "/sprout": {
       "filePath": "sprout.lazy.tsx"
