@@ -7,24 +7,37 @@
 
 /* darkmode/lightmode themes - for funsies */
 :root {
+  --core-text-color-light: #eee; /* note: Always light text for navbar */
   --core-text-color: #eee;
   --core-text-color-inverse: #393939;
   --core-background-color: #fff;
-  --core-border-radius: 4px;
+  --core-container-color: #fff;
   --hubspot-primary-color: #F57722;
   --hubspot-secondary-color: rgb(51, 71, 91);
   --hubspot-secondary-color-lite: rgb(80, 110, 144);
   --hubspot-bg-color-bg: #f5f8fa;
   --hubspot-accent-gradient: linear-gradient(114deg, rgb(252, 8, 73), rgb(210, 6, 136)) padding-box text;
+  --hubspot-accent-gradient-lite: linear-gradient(99deg, rgb(251, 221, 210), rgb(251, 219, 233));
+  --hubspot-accent-color: #d20688;
+  /* End Colors */
+  --core-border-radius: 8px;
   --layout-nav-height: 44px;
   --layout-nav-width: 50px;
+  
 }
 
 .dark-mode {
   --core-text-color: #393939;
   --core-text-color-inverse: #eee;
-  --core-background-color: #393939;
-  --hubspot-primary-color: #fff;
+  --core-background-color: rgb(51, 71, 91);
+  --core-container-color: rgb(80, 110, 144);
+  --hubspot-primary-color: #F57722;
+  --hubspot-secondary-color: rgb(22, 31, 41);
+  --hubspot-secondary-color-lite: rgb(51, 71, 91);
+  --hubspot-bg-color-bg: rgb(51, 71, 91);
+  --hubspot-accent-gradient: linear-gradient(114deg, #d20688, #ffbc4b) padding-box text;
+  --hubspot-accent-gradient-lite: linear-gradient(99deg, #5c61d6, #4348b0);
+  --hubspot-accent-color: #d20688;
 }
 
 
@@ -50,6 +63,9 @@ header {
   align-items: center;
   padding: 0 1rem;
   z-index: 1000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 aside {
@@ -66,7 +82,7 @@ aside {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.2rem;
 }
 
 main {
@@ -81,41 +97,13 @@ main {
 }
 
 .logo-container {
-  width: 50px;
-  height: 50px;
+  margin-top: auto;
   padding: 0;
   margin: 0;
   border: 0;
   background-color: var(--hubspot-secondary-color);
 }
 
-.side-nav-link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 8px;
-  border-radius: var(--core-border-radius);
-  background-color: var(--hubspot-secondary-color);
-  color: var(--core-text-color);
-}
-
-.side-nav-link-active {
-  background-color: var(--hubspot-secondary-color-lite);
-  color: var(--core-text-color);
-}
-
-.side-nav-link-active:visited {
-  color: var(--core-text-color);
-}
-
-.special-gradient {
-  font-size: 55px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 67px;
-  background: linear-gradient(114deg, rgb(252, 8, 73), rgb(210, 6, 136)) padding-box text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* end theming */
 
