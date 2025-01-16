@@ -56,6 +56,11 @@
   background-color: var(--hubspot-secondary-color);
 }
 
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
 header {
   grid-column: 1 / 3;
   grid-row: 1;
@@ -103,12 +108,14 @@ main {
   border-top-left-radius: 15px;
 }
 
+
 .logo-container {
   margin-top: auto;
   padding: 0;
   margin: 0;
   border: 0;
   background-color: var(--hubspot-secondary-color);
+  transform: translateY(5px);
 }
 
 ul {
@@ -120,6 +127,25 @@ ul>li {
   padding-left: 10px;
 }
 
+/* .scroll-sections {
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.scroll-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  background: var(--hubspot-primary-color);
+  border-bottom: 1px solid #ddd;
+}
+
+.scroll-section:nth-child(2n) {
+  background: #e0e0e0;
+} */
 
 
 /* end theming */
@@ -158,25 +184,6 @@ ul>li {
   color: var(--core-text-color);
 }
 
-.sections {
-  height: 100vh;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-}
-
-.section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-  background: var(--hubspot-primary-color);
-  border-bottom: 1px solid #ddd;
-}
-
-.section:nth-child(2n) {
-  background: #e0e0e0;
-}
 
 .background-canvas {
   position: absolute;
