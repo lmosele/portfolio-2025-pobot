@@ -54,11 +54,21 @@ const PanelDescription = styled.p`
   font-size: 1rem;
 `;
 
-export const Timeline = ({ events }) => {
+interface Event {
+  title: string;
+  date: string;
+  description: string;
+}
+
+interface TimelineProps {
+  events: Event[];
+}
+
+export const Timeline = ({ events }: TimelineProps) => {
   return (
     <TimelineContainer>
-      {events.map((event, id) => (
-        <TimelineItem key={id}>
+      {events.map((event, idx: number) => (
+        <TimelineItem key={idx}>
           <TimelineBullet />
           <TimelinePanel>
             <PanelTitle>{event.title}</PanelTitle>

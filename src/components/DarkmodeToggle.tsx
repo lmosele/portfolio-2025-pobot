@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Moon, Sun } from 'react-feather'
 import styled from 'styled-components'
 
@@ -47,7 +47,12 @@ const ToggleButton = styled.button`
 `
 
 
-export default function DarkModeToggle({ initialState = false, onToggle }) {
+interface DarkModeToggleProps {
+  initialState?: boolean;
+  onToggle?: (newState: boolean) => void;
+}
+
+export default function DarkModeToggle({ initialState = false, onToggle }: DarkModeToggleProps) {
   const [isOn, setIsOn] = useState(initialState)
 
   const handleToggle = () => {

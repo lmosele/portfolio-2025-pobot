@@ -18,6 +18,7 @@ import { Route as rootRoute } from './routes/__root'
 
 const SproutLazyImport = createFileRoute('/sprout')()
 const PortfolioLazyImport = createFileRoute('/portfolio')()
+const MenuLazyImport = createFileRoute('/menu')()
 const IndexBackupLazyImport = createFileRoute('/index-backup')()
 const AppcuesLazyImport = createFileRoute('/appcues')()
 const AboutLazyImport = createFileRoute('/about')()
@@ -36,6 +37,12 @@ const PortfolioLazyRoute = PortfolioLazyImport.update({
   path: '/portfolio',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/portfolio.lazy').then((d) => d.Route))
+
+const MenuLazyRoute = MenuLazyImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/menu.lazy').then((d) => d.Route))
 
 const IndexBackupLazyRoute = IndexBackupLazyImport.update({
   id: '/index-backup',
@@ -93,6 +100,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexBackupLazyImport
       parentRoute: typeof rootRoute
     }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/portfolio': {
       id: '/portfolio'
       path: '/portfolio'
@@ -117,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/menu': typeof MenuLazyRoute
   '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
@@ -126,6 +141,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/menu': typeof MenuLazyRoute
   '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
@@ -136,6 +152,7 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/menu': typeof MenuLazyRoute
   '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
@@ -147,16 +164,25 @@ export interface FileRouteTypes {
     | '/about'
     | '/appcues'
     | '/index-backup'
+    | '/menu'
     | '/portfolio'
     | '/sprout'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/appcues' | '/index-backup' | '/portfolio' | '/sprout'
+  to:
+    | '/'
+    | '/about'
+    | '/appcues'
+    | '/index-backup'
+    | '/menu'
+    | '/portfolio'
+    | '/sprout'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/appcues'
     | '/index-backup'
+    | '/menu'
     | '/portfolio'
     | '/sprout'
   fileRoutesById: FileRoutesById
@@ -167,6 +193,7 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute
   AppcuesLazyRoute: typeof AppcuesLazyRoute
   IndexBackupLazyRoute: typeof IndexBackupLazyRoute
+  MenuLazyRoute: typeof MenuLazyRoute
   PortfolioLazyRoute: typeof PortfolioLazyRoute
   SproutLazyRoute: typeof SproutLazyRoute
 }
@@ -176,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   AppcuesLazyRoute: AppcuesLazyRoute,
   IndexBackupLazyRoute: IndexBackupLazyRoute,
+  MenuLazyRoute: MenuLazyRoute,
   PortfolioLazyRoute: PortfolioLazyRoute,
   SproutLazyRoute: SproutLazyRoute,
 }
@@ -194,6 +222,7 @@ export const routeTree = rootRoute
         "/about",
         "/appcues",
         "/index-backup",
+        "/menu",
         "/portfolio",
         "/sprout"
       ]
@@ -209,6 +238,9 @@ export const routeTree = rootRoute
     },
     "/index-backup": {
       "filePath": "index-backup.lazy.tsx"
+    },
+    "/menu": {
+      "filePath": "menu.lazy.tsx"
     },
     "/portfolio": {
       "filePath": "portfolio.lazy.tsx"

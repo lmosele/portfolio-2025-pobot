@@ -49,7 +49,7 @@ export default function Chat() {
         }
     };
 
-    const botMessage = messages.filter(message => message.role != 'user').pop()?.content || ':)';
+    // const botMessage = messages.filter(message => message.role != 'user').pop()?.content || ':)';
 
     return (
         <StyledContainer>

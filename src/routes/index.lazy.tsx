@@ -1,12 +1,10 @@
 import { createLazyFileRoute, Link } from '@tanstack/react-router'
 import { AccentButton, Header, InnerContainer, InverseButton, NavButton, NavTabs, SpecialSection, StyledH1, StyledH2, StyledH3, Text, Tile, TileColumn, TileRow, Wrap } from '../components/Styled'
 
-import styled from 'styled-components'
 import { useState } from 'react'
 import { Timeline } from '../components/Timeline'
 import { events } from '../resume'
 import { Zap } from 'react-feather'
-import Chat from '../components/Chat'
 
 
 export const Route = createLazyFileRoute('/')({
@@ -51,12 +49,12 @@ function RouteComponent() {
                   <Tile>
                     <StyledH3>Projects</StyledH3>
                     <Text>See some of the projects I'm able to share publically</Text>
-                    <InverseButton>See Portfolio</InverseButton>
+                    <InverseButton as={Link} to="/portfolio">See Portfolio</InverseButton>
                   </Tile>
                   <Tile>
                     <StyledH3>Inspect Site</StyledH3>
-                    <Text>Navigate to Github to check out this portfolio's source code.</Text>
-                    <InverseButton>See Portfolio</InverseButton>
+                    <Text>Navigate to Github to check out this site's source code.</Text>
+                    <InverseButton as='a' target='_blank' href='https://www.github.com/lmosele'>See Code</InverseButton>
                   </Tile>
                 </TileRow>
               </Wrap>
@@ -66,7 +64,6 @@ function RouteComponent() {
             </div>)}
         </InnerContainer>
       </SpecialSection>
-      <Chat />
       <section>
         <InnerContainer>
           <TileColumn>
