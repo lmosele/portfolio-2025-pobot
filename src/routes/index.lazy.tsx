@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { Timeline } from '../components/Timeline'
 import { events } from '../resume'
 import { Zap } from 'react-feather'
+import { state } from '../state'
 
 
 export const Route = createLazyFileRoute('/')({
@@ -12,12 +13,15 @@ export const Route = createLazyFileRoute('/')({
 })
 
 
-
 function RouteComponent() {
+
   const [activeTab, setActiveTab] = useState('intro');
 
   const handleClick = (tab: string) => {
     setActiveTab(tab)
+  }
+  const handlePobot = () => {
+    state.chatOpen = true
   }
 
   return (
@@ -44,7 +48,7 @@ function RouteComponent() {
                   <Tile>
                     <StyledH3>Try Pobot</StyledH3>
                     <Text>Get more done with a virtual Lucas that works with you help hire him.</Text>
-                    <AccentButton><Zap size={'16px'} />Try Now!</AccentButton>
+                    <AccentButton onClick={handlePobot}><Zap size={'16px'} />Try Now!</AccentButton>
                   </Tile>
                   <Tile>
                     <StyledH3>Projects</StyledH3>

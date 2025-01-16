@@ -8,8 +8,7 @@ import '../App.css';
 import { IconHBDes } from '../assets/react-icons';
 import { LinksRow, NavbarLinks, Separator } from '../components/Styled';
 import DarkModeToggle from '../components/DarkmodeToggle';
-
-
+import Chat from '../components/Chat';
 
 
 const Root = () => {
@@ -19,13 +18,17 @@ const Root = () => {
         document.documentElement.className = state.darkmode ? 'dark-mode' : '';
     }, [snap.darkmode])
 
+    const handlePobot = () => {
+        state.chatOpen = true
+    }
+
     return (<div className='container'>
         <header>
             <Link className='logo-container' to="/">
                 <IconHBDes />
             </Link>
             <LinksRow>
-                <NavbarLinks as='button'><Zap size={'16px'} />Pobot</NavbarLinks>
+                <NavbarLinks as='button' onClick={handlePobot}><Zap size={'16px'} />Pobot</NavbarLinks>
                 <Separator />
                 <DarkModeToggle initialState={snap.darkmode} onToggle={() => {
                     state.darkmode = !state.darkmode;
@@ -43,7 +46,9 @@ const Root = () => {
 
         <main>
             <Outlet />
+            <Chat />
         </main>
+
     </div>)
 }
 
