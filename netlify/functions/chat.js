@@ -18,6 +18,7 @@ exports.handler = async function (event, context) {
             {
                 model: "gpt-4o-mini",
                 messages: messages,
+                assistant_id: 'asst_rDHeaKI8rrPhALjVjWHyp9eD'
             },
             {
                 headers: {
