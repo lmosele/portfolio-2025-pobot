@@ -127,25 +127,6 @@ ul>li {
   padding-left: 10px;
 }
 
-/* .scroll-sections {
-  height: 100vh;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-}
-
-.scroll-section {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  scroll-snap-align: start;
-  background: var(--hubspot-primary-color);
-  border-bottom: 1px solid #ddd;
-}
-
-.scroll-section:nth-child(2n) {
-  background: #e0e0e0;
-} */
 
 
 /* end theming */
@@ -184,6 +165,25 @@ ul>li {
   color: var(--core-text-color);
 }
 
+.scroll-sections {
+  height: 100vh;
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.scroll-section {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: start;
+  background: var(--hubspot-primary-color);
+  border-bottom: 1px solid #ddd;
+}
+
+.scroll-section:nth-child(2n) {
+  background: #e0e0e0;
+}
 
 .background-canvas {
   position: absolute;
