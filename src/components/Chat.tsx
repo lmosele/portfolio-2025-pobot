@@ -1,7 +1,6 @@
 
 import { useState } from 'react'
 
-
 import styled from 'styled-components'
 import { useSnapshot } from 'valtio'
 import { state } from '../state'
@@ -12,17 +11,40 @@ import { X } from 'react-feather'
 const StyledContainer = styled.div`
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 `
 const StyledForm = styled.form`
-  position: absolute;
-  bottom: 50px;
-  display: none;
+    display: flex;
+    width: 100%;
+    /* margin-bottom: 30px; */
+    input {
+        height: 100px;
+        padding: 0px 20px;
+        border: 0;
+        border-bottom-left-radius: var( --core-border-radius);
+        border-bottom-right-radius: var( --core-border-radius);
+        background-color: var(--hubspot-secondary-color);
+        flex: 1;
+        &::placeholder {
+            color: var(--core-text-color);
+        }
+    }
 `
-
+const StyledChatScrollable = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    overflow-y: auto;
+    max-width: 600px;
+    padding: 20px;
+    
+`
 const Styledheader = styled.div`
   display: flex;
-  padding: 12px 12px;
-  position: absolute;
+  padding: 20px;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -40,7 +62,6 @@ const ChatContainer = styled.div`
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   border: 1px solid var(--hubspot-accent-color);
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -48,6 +69,9 @@ const ChatContainer = styled.div`
   transform: translateX(100%);
   transition: transform 0.3s ease-in-out;
   z-index: 10;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
   &.active {
     transform: translateX(0%);
   }
@@ -67,10 +91,23 @@ const ExitButton = styled.button`
     }
 `
 
+const ChatBubble = styled.div<{ $role: string }>`
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    margin-bottom: 10px;
+    align-self: ${({ $role }) => $role === 'user' ? 'end' : 'start'};
+    text-align: ${({ $role }) => $role === 'user' ? 'right' : 'left'};
+    background-color: ${({ $role }) => $role === 'user' ? '#007bff' : '#28a745'};
+        color: var(--core-text-color-light);
+    padding: 10px;
+    border-radius: var(--core-border-radius);
+`
+
 export default function Chat() {
     const snap = useSnapshot(state, { sync: true })
 
-    const [messages, setMessages]: any = useState([]);
+    const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
     const [input, setInput] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -116,28 +153,22 @@ export default function Chat() {
                 <ExitButton aria-label='close chat' onClick={handleExit}><X /></ExitButton>
             </Styledheader>
             <StyledContainer>
-                <StyledForm onSubmit={handleSubmit} style={{ display: 'flex' }}>
-                    <div className='fooo' style={{ maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
-                        <div>
-                            {(messages as any).map((message: { role: string; content: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
-                                <div key={index} style={{ marginBottom: '10px', textAlign: message.role === 'user' ? 'right' : 'left' }}>
-                                    <span style={{ background: message.role === 'user' ? '#007bff' : '#28a745', color: 'white', padding: '5px 10px', borderRadius: '20px', display: 'inline-block' }}>
-                                        {message.content}
-                                    </span>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
+                <StyledChatScrollable>
+                    {/* Todo: clean this up */}
+                    {(messages).map((message: { role: string; content: string | number | boolean | React.ReactElement<unknown, string | React.JSXElementConstructor<unknown>> | Iterable<React.ReactNode> | React.ReactPortal | null | undefined; }, index: React.Key | null | undefined) => (
+                        <ChatBubble key={index} $role={message.role}>
+                            {message.content}
+                        </ChatBubble>
+                    ))}
+                </StyledChatScrollable>
+                <StyledForm onSubmit={handleSubmit}>
                     <input
                         type="text"
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Type your message..."
-                        style={{ flex: 1, marginRight: '10px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc' }}
+                        disabled={isLoading}
                     />
-                    <button type="submit" disabled={isLoading} style={{ padding: '10px 20px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-                        {isLoading ? 'Sending...' : 'Send'}
-                    </button>
                 </StyledForm>
             </StyledContainer>
         </ChatContainer>
