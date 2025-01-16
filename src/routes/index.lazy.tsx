@@ -54,7 +54,7 @@ function RouteComponent() {
                   <Tile>
                     <StyledH3>Inspect Site</StyledH3>
                     <Text>Navigate to Github to check out this site's source code.</Text>
-                    <InverseButton as='a' target='_blank' href='https://www.github.com/lmosele'>See Code</InverseButton>
+                    <InverseButton as='a' target='_blank' href='https://github.com/lmosele/portfolio-2025-pobot'>See Code</InverseButton>
                   </Tile>
                 </TileRow>
               </Wrap>
