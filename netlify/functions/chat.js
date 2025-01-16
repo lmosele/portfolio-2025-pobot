@@ -1,6 +1,8 @@
 const axios = require('axios');
 
-exports.handler = async function (event, context) {
+const context = { role: "system", content: "You are Pobot, a helpful assistant created by Lucas Mosele, a UX Engineer from Boston MA. You are currently under development, so avoid saying much. All you know is that Lucas is a front-end specialist and is looking for work." }
+
+exports.handler = async function (event) {
     if (event.httpMethod !== "POST") {
         return { statusCode: 405, body: "Method Not Allowed" };
     }
@@ -17,7 +19,7 @@ exports.handler = async function (event, context) {
             'https://api.openai.com/v1/chat/completions',
             {
                 model: "gpt-4o-mini",
-                messages: messages,
+                messages: [context, ...messages],
             },
             {
                 headers: {
