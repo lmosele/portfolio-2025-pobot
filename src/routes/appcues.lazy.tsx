@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Blurb, InnerContainer, SplashHeader, StyledH1, StyledH2, StyledH3, Text, Token, Breadcrumb } from '../components/Styled'
-import { ChevronLeft } from 'react-feather'
+import { Blurb, Banner, InnerContainer, SplashHeader, StyledH1, StyledH2, StyledH3, Text, Token, Breadcrumb } from '../components/Styled'
+import { AlertCircle, ChevronLeft } from 'react-feather'
 import { Link } from '@tanstack/react-router'
 
 export const Route = createLazyFileRoute('/appcues')({
@@ -17,7 +17,7 @@ function RouteComponent() {
         </InnerContainer>
       </SplashHeader>
       <InnerContainer style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-
+        <Banner><AlertCircle/> The following project is out of date, largely due to inaccessible screenshots or live code samples.</Banner>
         <Blurb>
           <Token style={{ background: 'var(--appcues-accent-color)' }}>Project Date: 2018 - 2019</Token>
           <StyledH3>Role: Front-End Developer (Design Systems)</StyledH3>

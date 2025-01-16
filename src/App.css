@@ -7,7 +7,8 @@
 
 /* darkmode/lightmode themes - for funsies */
 :root {
-  --core-text-color-light: #eee; /* note: Always light text for navbar */
+  --core-text-color-light: #eee;
+  /* note: Always light text for navbar */
   --core-text-color: #eee;
   --core-text-color-inverse: #393939;
   --core-background-color: #fff;
@@ -23,11 +24,12 @@
   --sprout-accent-color-dark: #073333;
   --appcues-accent-color: #5c45ff;
   --ellevation-accent-color: #6bbd11;
+  --gg-accent-color: #D29D00;
   /* End Colors */
   --core-border-radius: 8px;
   --layout-nav-height: 44px;
   --layout-nav-width: 50px;
-  
+
 }
 
 .dark-mode {
@@ -108,6 +110,16 @@ main {
   border: 0;
   background-color: var(--hubspot-secondary-color);
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul>li {
+  padding-left: 10px;
+}
+
 
 
 /* end theming */

@@ -40,6 +40,17 @@ function RouteComponent() {
         <section>
             <InnerContainer>
                 <TileColumn>
+                    <Tile as={Link} to="/sprout">
+                        <TopAccent style={{ background: 'var(--sprout-accent-color-dark)' }} />
+                        <Row>
+                            <ImageAccent src="/sprout-metrics.png" alt="Sprout" />
+                            <Col>
+                                <StyledH3>Sprout Social: Parity & Metrics</StyledH3>
+                                <Token style={{ background: 'var(--sprout-accent-color-dark)' }}>Front-End Development | React | Node.js | DesignOps | Research</Token>
+                                <Text>Overview of how we built our design system's refactoring process and metrics tooling for tracking design systems utilization.</Text>
+                            </Col>
+                        </Row>
+                    </Tile>
                     <Tile as={Link} to="/menu">
                         <TopAccent style={{ background: 'var(--sprout-accent-color)' }} />
                         <Row>
@@ -51,14 +62,14 @@ function RouteComponent() {
                             </Col>
                         </Row>
                     </Tile>
-                    <Tile as={Link} to="/sprout">
-                        <TopAccent style={{ background: 'var(--sprout-accent-color-dark)' }} />
+                    <Tile as={Link} to="/gathergrimoire">
+                        <TopAccent style={{ background: 'var(--gg-accent-color)' }} />
                         <Row>
-                            <ImageAccent src="/sprout-metrics.png" alt="Sprout" />
+                            <ImageAccent src="/gg-1.png" alt="GatherGrimoire" />
                             <Col>
-                                <StyledH3>Sprout Social: Parity & Metrics</StyledH3>
-                                <Token style={{ background: 'var(--sprout-accent-color-dark)' }}>React | DesignOps | Research</Token>
-                                <Text>Overview of how we built our design system's refactoring process and metrics tooling for tracking design systems utilization.</Text>
+                                <StyledH3>GatherGrimoire: A Tabletop Roleplaying Tool</StyledH3>
+                                <Token style={{ background: 'var(--gg-accent-color)' }}>Full Stack Development | React | UI | Prototyping </Token>
+                                <Text>A passion project prototyped entirely in google sheets, Gathergrimoire is a tool for managing TTRPG groups.</Text>
                             </Col>
                         </Row>
                     </Tile>
@@ -68,8 +79,19 @@ function RouteComponent() {
                             <ImageAccent src="/appcues-1.png" alt="Appcues" />
                             <Col>
                                 <StyledH3>Appcues: Table Analytics</StyledH3>
-                                <Token style={{ background: 'var(--appcues-accent-color)' }}>React | Design</Token>
-                                <Text>A large scale refactoring and rethinking of our organization's filtering, searching, dropdown and menu interactions.</Text>
+                                <Token style={{ background: 'var(--appcues-accent-color)' }}>Front-End Development | React | Design Systems</Token>
+                                <Text>High level overview of steps taken to design and implement new features into an analytics dashboard.</Text>
+                            </Col>
+                        </Row>
+                    </Tile>
+                    <Tile as={Link} to="/ellevation">
+                        <TopAccent style={{ background: 'var(--ellevation-accent-color)' }} />
+                        <Row>
+                            <ImageAccent src="/ell-1.png" alt="Ellevation" />
+                            <Col>
+                                <StyledH3>Ellevation Education: Strategies Prototyping</StyledH3>
+                                <Token style={{ background: 'var(--ellevation-accent-color)' }}>Full Stack Development | Aurelia | .NET | Prototyping </Token>
+                                <Text>Overview of the prototyping done to develop and ship tooling for English Second Language Learners.</Text>
                             </Col>
                         </Row>
                     </Tile>

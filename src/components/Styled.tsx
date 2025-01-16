@@ -65,6 +65,10 @@ export const CenterContainer = styled.div`
   flex-direction: column;
 `
 export const StyledButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     background: transparent;
     border: 1px solid var(--core-text-color);
     color: var(--core-text-color);
@@ -256,4 +260,19 @@ export const Breadcrumb = styled(StyledButton)`
   justify-content: center;
   align-items: center;
   gap: 10px;
+`
+export const Banner = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 30px;
+  background: var(--hubspot-accent-color);
+  border-radius: var(--core-border-radius);
+  color: var(--core-text-color);
+  font-weight: bold;
+  font-size: 1.2em;
 `
