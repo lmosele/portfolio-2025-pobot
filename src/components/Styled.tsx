@@ -53,7 +53,7 @@ export const Tile = styled.figure`
   padding: 20px;
   height: auto;
   color: var(--core-text-color-inverse);
-  &:hover {
+  &a:hover {
     cursor: pointer;
     color: var(--core-text-color-inverse);
     box-shadow: 10px 10px 25px -25px rgba(0,0,0,0.75);  
@@ -65,6 +65,10 @@ export const CenterContainer = styled.div`
   flex-direction: column;
 `
 export const StyledButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
     background: transparent;
     border: 1px solid var(--core-text-color);
     color: var(--core-text-color);
@@ -196,4 +200,79 @@ export const LinksRow = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1em;
+`
+
+export const Token = styled.span`
+    display: inline-flex;
+    background: var(--core-text-color); 
+    color: var(--core-background-color);
+    padding: 4px 8px;
+    border-radius: var(--core-border-radius);
+    font-weight: bold;
+    width: fit-content;
+`
+
+
+export const SplashHeader = styled(Header)`
+  display: flex;
+  height: auto;
+  background-color: var(--sprout-accent-color);
+  background-image: url(./sprout-bg.png);
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  color: var(--core-text-color-light);
+  gap: 20px;
+  h2
+  img {
+    max-width: 400px;
+  }
+
+`
+export const SplashButton = styled(AccentButton)`
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  align-self: center;
+  padding: 30px;
+  font-size: 2em;
+  text-align: center;
+  width: 50%;
+  background-color: var(--sprout-accent-color-dark);
+  color: var(--core-text-color-light);
+  &:hover {
+    background-color: var(--sprout-accent-color);
+  }
+`
+export const Blurb = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 0;
+  margin: 20px 0;
+  border-top: 1px solid var(--core-text-color);
+  border-bottom: 1px solid var(--core-text-color);
+`
+
+export const Breadcrumb = styled(StyledButton)`
+  max-width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`
+export const Banner = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  margin-top: 30px;
+  background: var(--hubspot-accent-color);
+  border-radius: var(--core-border-radius);
+  color: var(--core-text-color);
+  font-weight: bold;
+  font-size: 1.2em;
 `

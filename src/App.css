@@ -7,7 +7,8 @@
 
 /* darkmode/lightmode themes - for funsies */
 :root {
-  --core-text-color-light: #eee; /* note: Always light text for navbar */
+  --core-text-color-light: #eee;
+  /* note: Always light text for navbar */
   --core-text-color: #eee;
   --core-text-color-inverse: #393939;
   --core-background-color: #fff;
@@ -23,11 +24,12 @@
   --sprout-accent-color-dark: #073333;
   --appcues-accent-color: #5c45ff;
   --ellevation-accent-color: #6bbd11;
+  --gg-accent-color: #D29D00;
   /* End Colors */
   --core-border-radius: 8px;
   --layout-nav-height: 44px;
   --layout-nav-width: 50px;
-  
+
 }
 
 .dark-mode {
@@ -39,7 +41,7 @@
   --hubspot-secondary-color: rgb(22, 31, 41);
   --hubspot-secondary-color-lite: rgb(51, 71, 91);
   --hubspot-bg-color-bg: rgb(51, 71, 91);
-  --hubspot-accent-gradient: linear-gradient(114deg, #d20688, #ffbc4b) padding-box text;
+  --hubspot-accent-gradient: #eee padding-box text;
   --hubspot-accent-gradient-lite: linear-gradient(99deg, #5c61d6, #4348b0);
   --hubspot-accent-color: #d20688;
 }
@@ -66,6 +68,7 @@ header {
   display: flex;
   align-items: center;
   padding: 0 1rem;
+  /* z-index: 10; */
   z-index: 1000;
   display: flex;
   flex-direction: row;
@@ -107,6 +110,16 @@ main {
   border: 0;
   background-color: var(--hubspot-secondary-color);
 }
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul>li {
+  padding-left: 10px;
+}
+
 
 
 /* end theming */

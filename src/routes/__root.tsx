@@ -6,8 +6,7 @@ import { GitHub, Grid, Home, User, Zap } from 'react-feather';
 
 import '../App.css';
 import { IconHBDes } from '../assets/react-icons';
-import styled from 'styled-components';
-import { LinksRow, NavbarLinks, NavButton, Separator } from '../components/Styled';
+import { LinksRow, NavbarLinks, Separator } from '../components/Styled';
 import DarkModeToggle from '../components/DarkmodeToggle';
 
 

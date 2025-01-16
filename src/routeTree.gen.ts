@@ -18,7 +18,10 @@ import { Route as rootRoute } from './routes/__root'
 
 const SproutLazyImport = createFileRoute('/sprout')()
 const PortfolioLazyImport = createFileRoute('/portfolio')()
+const MenuLazyImport = createFileRoute('/menu')()
 const IndexBackupLazyImport = createFileRoute('/index-backup')()
+const GathergrimoireLazyImport = createFileRoute('/gathergrimoire')()
+const EllevationLazyImport = createFileRoute('/ellevation')()
 const AppcuesLazyImport = createFileRoute('/appcues')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
@@ -37,11 +40,31 @@ const PortfolioLazyRoute = PortfolioLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/portfolio.lazy').then((d) => d.Route))
 
+const MenuLazyRoute = MenuLazyImport.update({
+  id: '/menu',
+  path: '/menu',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/menu.lazy').then((d) => d.Route))
+
 const IndexBackupLazyRoute = IndexBackupLazyImport.update({
   id: '/index-backup',
   path: '/index-backup',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index-backup.lazy').then((d) => d.Route))
+
+const GathergrimoireLazyRoute = GathergrimoireLazyImport.update({
+  id: '/gathergrimoire',
+  path: '/gathergrimoire',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/gathergrimoire.lazy').then((d) => d.Route),
+)
+
+const EllevationLazyRoute = EllevationLazyImport.update({
+  id: '/ellevation',
+  path: '/ellevation',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/ellevation.lazy').then((d) => d.Route))
 
 const AppcuesLazyRoute = AppcuesLazyImport.update({
   id: '/appcues',
@@ -86,11 +109,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppcuesLazyImport
       parentRoute: typeof rootRoute
     }
+    '/ellevation': {
+      id: '/ellevation'
+      path: '/ellevation'
+      fullPath: '/ellevation'
+      preLoaderRoute: typeof EllevationLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/gathergrimoire': {
+      id: '/gathergrimoire'
+      path: '/gathergrimoire'
+      fullPath: '/gathergrimoire'
+      preLoaderRoute: typeof GathergrimoireLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/index-backup': {
       id: '/index-backup'
       path: '/index-backup'
       fullPath: '/index-backup'
       preLoaderRoute: typeof IndexBackupLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/menu': {
+      id: '/menu'
+      path: '/menu'
+      fullPath: '/menu'
+      preLoaderRoute: typeof MenuLazyImport
       parentRoute: typeof rootRoute
     }
     '/portfolio': {
@@ -116,7 +160,10 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
+  '/ellevation': typeof EllevationLazyRoute
+  '/gathergrimoire': typeof GathergrimoireLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/menu': typeof MenuLazyRoute
   '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
@@ -125,7 +172,10 @@ export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
+  '/ellevation': typeof EllevationLazyRoute
+  '/gathergrimoire': typeof GathergrimoireLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/menu': typeof MenuLazyRoute
   '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
@@ -135,7 +185,10 @@ export interface FileRoutesById {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/appcues': typeof AppcuesLazyRoute
+  '/ellevation': typeof EllevationLazyRoute
+  '/gathergrimoire': typeof GathergrimoireLazyRoute
   '/index-backup': typeof IndexBackupLazyRoute
+  '/menu': typeof MenuLazyRoute
   '/portfolio': typeof PortfolioLazyRoute
   '/sprout': typeof SproutLazyRoute
 }
@@ -146,17 +199,32 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/appcues'
+    | '/ellevation'
+    | '/gathergrimoire'
     | '/index-backup'
+    | '/menu'
     | '/portfolio'
     | '/sprout'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/appcues' | '/index-backup' | '/portfolio' | '/sprout'
+  to:
+    | '/'
+    | '/about'
+    | '/appcues'
+    | '/ellevation'
+    | '/gathergrimoire'
+    | '/index-backup'
+    | '/menu'
+    | '/portfolio'
+    | '/sprout'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/appcues'
+    | '/ellevation'
+    | '/gathergrimoire'
     | '/index-backup'
+    | '/menu'
     | '/portfolio'
     | '/sprout'
   fileRoutesById: FileRoutesById
@@ -166,7 +234,10 @@ export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   AboutLazyRoute: typeof AboutLazyRoute
   AppcuesLazyRoute: typeof AppcuesLazyRoute
+  EllevationLazyRoute: typeof EllevationLazyRoute
+  GathergrimoireLazyRoute: typeof GathergrimoireLazyRoute
   IndexBackupLazyRoute: typeof IndexBackupLazyRoute
+  MenuLazyRoute: typeof MenuLazyRoute
   PortfolioLazyRoute: typeof PortfolioLazyRoute
   SproutLazyRoute: typeof SproutLazyRoute
 }
@@ -175,7 +246,10 @@ const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   AboutLazyRoute: AboutLazyRoute,
   AppcuesLazyRoute: AppcuesLazyRoute,
+  EllevationLazyRoute: EllevationLazyRoute,
+  GathergrimoireLazyRoute: GathergrimoireLazyRoute,
   IndexBackupLazyRoute: IndexBackupLazyRoute,
+  MenuLazyRoute: MenuLazyRoute,
   PortfolioLazyRoute: PortfolioLazyRoute,
   SproutLazyRoute: SproutLazyRoute,
 }
@@ -193,7 +267,10 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/appcues",
+        "/ellevation",
+        "/gathergrimoire",
         "/index-backup",
+        "/menu",
         "/portfolio",
         "/sprout"
       ]
@@ -207,8 +284,17 @@ export const routeTree = rootRoute
     "/appcues": {
       "filePath": "appcues.lazy.tsx"
     },
+    "/ellevation": {
+      "filePath": "ellevation.lazy.tsx"
+    },
+    "/gathergrimoire": {
+      "filePath": "gathergrimoire.lazy.tsx"
+    },
     "/index-backup": {
       "filePath": "index-backup.lazy.tsx"
+    },
+    "/menu": {
+      "filePath": "menu.lazy.tsx"
     },
     "/portfolio": {
       "filePath": "portfolio.lazy.tsx"
