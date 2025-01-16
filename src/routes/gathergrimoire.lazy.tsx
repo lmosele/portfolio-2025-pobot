@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { Blurb, InnerContainer, SplashHeader, StyledH1, StyledH2, StyledH3, Text, Token, Breadcrumb, InverseButton } from '../components/Styled'
-import { ChevronLeft, GitHub } from 'react-feather'
+import { Blurb, InnerContainer, SplashHeader, StyledH1, StyledH2, StyledH3, Text, Token, Breadcrumb } from '../components/Styled'
+import { ChevronLeft } from 'react-feather'
 import { Link } from '@tanstack/react-router'
 
 export const Route = createLazyFileRoute('/gathergrimoire')({
