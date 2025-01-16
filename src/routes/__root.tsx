@@ -38,10 +38,10 @@ const Root = () => {
         </header>
 
         <aside>
-            <NavbarLinks to="/" activeProps={{ className: 'active' }}><Home /></NavbarLinks>
-            <NavbarLinks to="/about" activeProps={{ className: 'active' }}><User /></NavbarLinks>
-            <NavbarLinks to="/portfolio" activeProps={{ className: 'active' }}><Grid /></NavbarLinks>
-            <NavbarLinks as="a" target="_blank" href='https://www.github.com/lmosele' className='side-nav-link'><GitHub /></NavbarLinks>
+            <NavbarLinks aria-label="Home" to="/" activeProps={{ className: 'active' }}><Home /></NavbarLinks>
+            <NavbarLinks aria-label="About Page" to="/about" activeProps={{ className: 'active' }}><User /></NavbarLinks>
+            <NavbarLinks aria-label="Portfolio Page" to="/portfolio" activeProps={{ className: 'active' }}><Grid /></NavbarLinks>
+            <NavbarLinks aria-label="Github Link" as="a" target="_blank" href='https://www.github.com/lmosele' className='side-nav-link'><GitHub /></NavbarLinks>
         </aside>
 
         <main>

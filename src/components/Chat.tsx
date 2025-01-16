@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 
 import styled from 'styled-components'
@@ -14,6 +13,7 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: auto;
+  overflow-x: hidden;
 `
 const StyledForm = styled.form`
     display: flex;
@@ -23,12 +23,13 @@ const StyledForm = styled.form`
         height: 100px;
         padding: 0px 20px;
         border: 0;
+        border-top: 1px solid var(--hubspot-accent-color);
         border-bottom-left-radius: var( --core-border-radius);
         border-bottom-right-radius: var( --core-border-radius);
         background-color: var(--hubspot-secondary-color);
         flex: 1;
         &::placeholder {
-            color: var(--core-text-color);
+            color: white;
         }
     }
 `
@@ -58,7 +59,7 @@ const ChatContainer = styled.div`
   top: var(--layout-nav-height);
   right: 0;
   width: 400px;
-  background-color: var(--core-container-color);
+  background-color: var(--hubspot-bg-color-bg);
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
   border: 1px solid var(--hubspot-accent-color);
@@ -99,7 +100,7 @@ const ChatBubble = styled.div<{ $role: string }>`
     align-self: ${({ $role }) => $role === 'user' ? 'end' : 'start'};
     text-align: ${({ $role }) => $role === 'user' ? 'right' : 'left'};
     background-color: ${({ $role }) => $role === 'user' ? '#007bff' : '#28a745'};
-        color: var(--core-text-color-light);
+    color: var(--core-text-color-light);
     padding: 10px;
     border-radius: var(--core-border-radius);
 `
@@ -144,12 +145,12 @@ export default function Chat() {
         state.chatOpen = false
     }
 
-    // const botMessage = messages.filter(message => message.role != 'user').pop()?.content || ':)';
-
     return (
         <ChatContainer className={snap.chatOpen ? 'active' : ''}>
             <Styledheader>
-                <StyledH3>New Chat</StyledH3>
+                <StyledH3>
+                    {isLoading ? 'Thinking...' : 'New Chat'}
+                </StyledH3>
                 <ExitButton aria-label='close chat' onClick={handleExit}><X /></ExitButton>
             </Styledheader>
             <StyledContainer>
@@ -167,7 +168,6 @@ export default function Chat() {
                         value={input}
                         onChange={(e) => setInput(e.target.value)}
                         placeholder="Type your message..."
-                        disabled={isLoading}
                     />
                 </StyledForm>
             </StyledContainer>

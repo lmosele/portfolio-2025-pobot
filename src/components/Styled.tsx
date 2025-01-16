@@ -172,9 +172,7 @@ export const NavbarLinks = styled(Link)`
   border-radius: var(--core-border-radius);
   background-color: var(--hubspot-secondary-color);
   color: var(--core-text-color-light);
-    &:hover
-    &:focus
-    &:active {
+    &:hover {
         cursor: pointer;
         background-color: var(--hubspot-secondary-color-lite);
     }
