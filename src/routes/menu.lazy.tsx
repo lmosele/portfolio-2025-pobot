@@ -41,8 +41,8 @@ function RouteComponent() {
 
                 <Blurb>
                     <StyledH2>Once the Menu's numerous parts and interactions were defined, myself and the other design engineer worked closely with our staff product designer to prototype and design the interactions.</StyledH2>
-                    <Text>The entirety of this phase of our project was led by accessibility needs, resulting in numerous discussions with out VPAT auditors.</Text>
-                    <Text>This was also the first phase of the project were coding was done by myself and the team.</Text>
+                    <Text>The entirety of this phase of our project was led by accessibility needs, resulting in numerous discussions r VPAT auditors.</Text>
+                    <Text>This was also the first phase of the project where coding was done by myself and the team.</Text>
                 </Blurb>
 
                 <img src="/menu-slide-4.png" alt="Sprout" />
@@ -52,7 +52,7 @@ function RouteComponent() {
                 </Blurb>
                 <img src="/menu-slide-5.png" alt="Sprout" />
                 <Blurb>
-                    <StyledH2>One interesting side effect of this project were conversations around style.</StyledH2>
+                    <StyledH2>One interesting side effect of this project was the conversations around style.</StyledH2>
                     <Text>Before this project, we had never discussed the necessity of coding guidelines, but due to the overlapping nature of this ecosystem, I developed and introduced coding guidelines to our team to better align on patterns.</Text>
                 </Blurb>
                 <img src="/menu-slide-6.png" alt="Sprout" />

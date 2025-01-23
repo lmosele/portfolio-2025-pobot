@@ -203,7 +203,7 @@ export const LinksRow = styled.div`
 export const Token = styled.span`
     display: inline-flex;
     background: var(--core-text-color); 
-    color: var(--core-background-color);
+    color: var(--core-text-color-light);
     padding: 4px 8px;
     border-radius: var(--core-border-radius);
     font-weight: bold;
