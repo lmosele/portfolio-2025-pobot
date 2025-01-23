@@ -36,7 +36,7 @@ function RouteComponent() {
                     </Text>
                     <StyledH2>Goals</StyledH2>
                     <Text>
-                        Product Managers were able to more quickly validate ideas during testing and Designers were more empowered to engage with the Development process. React was also seeing its first light as a potential replacement for our old stack.
+                        Our hope was that Product Managers would be able to more quickly validate ideas during testing and Designers would be more empowered to engage with the Development process. I also intended for React to be seen as a potential replacement for our old front-end stack.
                     </Text>
                 </Blurb>
 
@@ -66,7 +66,7 @@ function RouteComponent() {
                 <Blurb>
                     <StyledH2>Results</StyledH2>
                     <Text>
-                        The out of this project was that Product Managers were able to more quickly validate ideas during testing. Designers were also more empowered to engage with the Development process. React was also seeing its first light as a potential replacement for our old stack.
+                        The output of this project was that Product Managers were able to more quickly validate ideas during testing. Designers were also more empowered to engage with the Development process. React was also seeing its first light as a potential replacement for our old stack.
                     </Text>
                     <Text>
                         As a result of this prototype I was assigned to help design and build a production scale version of an A/B testing tool, allowing us to internally flag new features for user research.

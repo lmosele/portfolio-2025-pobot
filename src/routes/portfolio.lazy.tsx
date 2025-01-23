@@ -62,6 +62,17 @@ function RouteComponent() {
                             </Col>
                         </Row>
                     </Tile>
+                    <Tile as={Link} to="/ellevation">
+                        <TopAccent style={{ background: 'var(--ellevation-accent-color)' }} />
+                        <Row>
+                            <ImageAccent src="/ell-1.png" alt="Ellevation" />
+                            <Col>
+                                <StyledH3>Ellevation Education: Strategies Prototyping</StyledH3>
+                                <Token style={{ background: 'var(--ellevation-accent-color)' }}>Full Stack Development | Aurelia | .NET | Prototyping </Token>
+                                <Text>Overview of the prototyping done to develop and ship tooling for English Second Language Learners.</Text>
+                            </Col>
+                        </Row>
+                    </Tile>
                     <Tile as={Link} to="/gathergrimoire">
                         <TopAccent style={{ background: 'var(--gg-accent-color)' }} />
                         <Row>
@@ -84,17 +95,7 @@ function RouteComponent() {
                             </Col>
                         </Row>
                     </Tile>
-                    <Tile as={Link} to="/ellevation">
-                        <TopAccent style={{ background: 'var(--ellevation-accent-color)' }} />
-                        <Row>
-                            <ImageAccent src="/ell-1.png" alt="Ellevation" />
-                            <Col>
-                                <StyledH3>Ellevation Education: Strategies Prototyping</StyledH3>
-                                <Token style={{ background: 'var(--ellevation-accent-color)' }}>Full Stack Development | Aurelia | .NET | Prototyping </Token>
-                                <Text>Overview of the prototyping done to develop and ship tooling for English Second Language Learners.</Text>
-                            </Col>
-                        </Row>
-                    </Tile>
+
                 </TileColumn>
             </InnerContainer>
         </section >)
